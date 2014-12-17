@@ -1,0 +1,46 @@
+extends layout
+
+block content
+	div.modal.fade#modal
+		div.modal-dialog.modal-lg
+			div.modal-content
+				div.modal-header
+					h2.panel-title(style="text-align: center;") Authorization
+				div.modal-body
+					div.panel.panel-success
+						div.panel-heading
+							h3.panel-title(style="text-align: center;") Sign In
+						div.panel-body
+							form(role="form", action="/login" method="post")
+								fieldset
+									div.form-group
+										input.form-control(placeholder="Email", name="username", type="text")
+									div.form-group
+										input.form-control(placeholder="Password" name="password", type="password")
+									input.btn.btn-lg.btn-success.btn-block(type="submit", value="Login")
+							#message
+								if message
+									h1.text-center.error-message #{message}
+					div.panel.panel-success
+						div.panel-heading
+							h3.panel-title(style="text-align: center;") Register
+						div.panel-body
+							form(role="form", action="/signup" method="post")
+								fieldset
+									div.form-group
+										input.form-control(placeholder="Email", name="username", type="text")
+									div.form-group
+										input.form-control(placeholder="First Name", name="firstName", type="text")
+									div.form-group
+										input.form-control(placeholder="Last Name", name="lastName", type="text")
+									div.form-group
+										input.form-control(placeholder="Password" name="password", type="password")
+									div.form-group
+										input.form-control(placeholder="Repeat Password" name="password-repeat", type="password")
+									input.btn.btn-lg.btn-success.btn-block(type="submit", value="Register")
+							#message
+								if message
+									h1.text-center.error-message #{message}
+
+block scripts
+	script(src='/javascripts/login.js')

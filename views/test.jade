@@ -1,0 +1,43 @@
+extends layout
+
+block css
+    link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Open+Sans|Slabo+27px|Roboto|Roboto+Condensed')
+    link(rel='stylesheet', href='/stylesheets/test.css')
+
+block content
+    input(type="hidden", value="#{user.firstName} #{user.lastName}", id="author")
+    input(type="hidden", value="#{user.url}", id="url")
+    .container#wrapper
+        .row
+            .col-md-8.col-md-offset-2
+                .panel.panel-success
+                    .panel-heading
+                        span.glyphicon.glyphicon-comment
+                        |  <b> Welcome to 18-652 Chat, #{user.firstName} #{user.lastName}! </b>           
+                        .pull-right                      
+                            span.glyphicon.glyphicon-off
+                            a(href="/logout", id="logout") 
+                                | <b >Sign Out </b>                               
+                    .panel-body#body
+                        ul.chat#allMsgs
+                            -each message in messages
+                                li.left.clearfix
+                                    span.chat-img.pull-left
+                                        img.img-circle(src='#{message.url}', alt='User Avatar')                             
+                                    .chat-body.clearfix
+                                        strong.primary-font #{message.author}
+                                        small.pull-right.text-muted
+                                            span.glyphicon.glyphicon-time
+                                            span.time #{message.time}                                
+                                        p #{message.text}                        
+                    .panel-footer
+                        .input-group
+                            input#sentMsg.form-control.input-sm(type='text', placeholder='Type your message here...')                        
+                            span.input-group-btn
+                                button#msgButton.btn.btn-warning.btn-sm
+                                    | Send
+
+block scripts
+    script(src='/javascripts/socket.io.js')
+    script(src='/javascripts/main.js')
+    script(src='/javascripts/jquery.tubular.1.0.js')

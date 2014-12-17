@@ -1,0 +1,24 @@
+extends layout
+
+block css
+	link(rel='stylesheet', href='/stylesheets/style.css')
+
+block content
+	input(type="hidden", value="#{user.name}", id="author")
+	a(href="/logout", class="btn btn-default") Logout
+	div.container
+		div.panel.panel-default#mainPanel
+			div.panel-body#allMsgs
+				-each message in messages
+					div.panel.panel-default#eachMsg
+						div.panel-heading #{message.author} at #{message.time}
+						div.panel-msg.panel-body #{message.text}
+			div.panel-footer
+				div.input-group
+					input.form-control(type="text", id="sentMsg")
+					span.input-group-btn
+						button.btn.btn-default(type="button", id="msgButton").
+							Send
+block scripts
+	script(src='/javascripts/socket.io.js')
+	script(src='/javascripts/main.js')
