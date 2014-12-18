@@ -1,12 +1,12 @@
 body {
     word-wrap : break-word;
-    background-image : url("http://tympanus.net/Development/Arctext/images/texture.png"); 
+    background-image : url("http://tympanus.net/Development/Arctext/images/texture.png");
 }
 
 .container {
-    padding : 5%;
+    padding : 2%;
     font-family: 'Roboto', sans-serif;
-    width: 50%;
+    width: 60%;
 }
 
 .chat
@@ -52,7 +52,7 @@ body {
 .panel-body
 {
     overflow-y: scroll;
-    height: 600px;
+    height: 500px;
 }
 
 ::-webkit-scrollbar-track

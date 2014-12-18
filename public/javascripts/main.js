@@ -2,7 +2,10 @@ var socket = io.connect();
 
 $(document).ready(function() {
 
-	// $('#wrapper').tubular({videoId: 'v66J6drc17M'});
+	setInterval(function () {
+		// Reload from server (not browser cache)
+		location.reload(true);
+	}, 60*1000);
 
 	updatePage();
 
@@ -47,7 +50,7 @@ function adjustTime() {
 
 		var diffHours = Math.floor(diffMillis / (3600*1000));
 		if (diffHours == 1) {
-			$(this).text(diffHours + " hour ago");
+			$(this).text("an hour ago");
 			return;
 		}
 		if (diffHours > 1) {
