@@ -40,7 +40,9 @@ exports.socketIO = function (app) {
         });
     });
 
-    http.listen(3000, os.hostname(), function(){
-        console.log('listening on ' + os.hostname() + ':3000');
+    var port = process.env.PORT || 3000;
+
+    http.listen(port, os.hostname(), function(){
+        console.log('listening on ' + os.hostname() + ':' + port);
     });
 }
