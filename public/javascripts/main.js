@@ -57,8 +57,9 @@ function adjustTime() {
 	$('span.time').each(function () {
 		var time = $(this).text();
 		var millis = Date.parse(time);
-		var current = new Date();
-		var currentMillis = current.getTime();
+		var now = new Date(); 
+		var now_utc = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(),  now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds());
+		var currentMillis = now_utc.getTime();
 		var diffMillis = currentMillis - millis;
 
 		var diffDays = Math.floor(diffMillis / (24*3600*1000));

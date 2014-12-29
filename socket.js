@@ -27,7 +27,9 @@ exports.socketIO = function (app) {
             var newMsg = new Message();
             newMsg.author = data.author;
             newMsg.text = data.text;
-            newMsg.time = strftime("%T %F", new Date());
+            var now = new Date();
+            var utc = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(),  now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds());
+            newMsg.time = strftime("%T %F", utc);
             newMsg.url = data.url;
             newMsg.save(function (err, newMsg) {
                 if (err) return console.error(err);
