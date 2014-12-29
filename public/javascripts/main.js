@@ -9,6 +9,19 @@ $(document).ready(function() {
 
 	updatePage();
 
+	socket.emit('user', { 
+		name : $("#author").val() 
+	});
+
+	var previousText = "";
+	setInterval(function () {
+		var text = $("#sentMsg").val();
+		if (previousText != text) {
+			socket.emit("typing", {});
+		}
+		previousText = text;
+	}, 2*1000);	
+
 	$("#msgButton").click(function() {
 		var text = $("#sentMsg").val();
 		if (text != "") {
@@ -47,6 +60,16 @@ function adjustTime() {
 		var current = new Date();
 		var currentMillis = current.getTime();
 		var diffMillis = currentMillis - millis;
+
+		var diffDays = Math.floor(diffMillis / (24*3600*1000));
+		if (diffDays == 1) {
+			$(this).text("yesterday");
+			return;
+		}
+		if (diffDays > 1) {
+			$(this).text(diffDays + " days ago");
+			return;
+		}
 
 		var diffHours = Math.floor(diffMillis / (3600*1000));
 		if (diffHours == 1) {
