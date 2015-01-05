@@ -34,6 +34,7 @@ module.exports = function(passport){
                         newUser.firstName = req.param('firstName');
                         newUser.lastName = req.param('lastName');
                         newUser.url = imageUrl(req.param('firstName'), req.param('lastName'));
+                        newUser.isOnline = true;
 
                         // save the user
                         newUser.save(function(err) {

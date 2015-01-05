@@ -6,10 +6,23 @@ block css
 
 block content
     input(type="hidden", value="#{user.firstName} #{user.lastName}", id="author")
+    input(type="hidden", value="#{user.email}", id="authorEmail")
     input(type="hidden", value="#{user.url}", id="url")
     .container#wrapper
         .row
-            .col-md-8.col-md-offset-2
+            .col-md-4
+                .panel.panel-success
+                    .panel-heading
+                        b Online Users
+                    .panel-body
+                        ul.chat
+                            -each onlineUser in onlineUsers
+                                li.left.clearfix
+                                    span.chat-img.pull-left
+                                        img.img-circle(src='#{onlineUser.url}', alt='User Avatar')                             
+                                    .chat-body.clearfix
+                                        strong.primary-font #{onlineUser.firstName} #{onlineUser.lastName}
+            .col-md-8
                 .panel.panel-success
                     .panel-heading
                         span.glyphicon.glyphicon-comment

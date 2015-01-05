@@ -40,7 +40,7 @@ app.use(flash());
 app.use('/', routes);
 app.use('/users', users);
 
-mongoose.connect(process.env.MONGOLAB_URI || db.url);
+mongoose.connect(db.url);
 console.log("Connected to MongoDB");
 
 // catch 404 and forward to error handler

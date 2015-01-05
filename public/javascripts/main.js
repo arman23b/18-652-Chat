@@ -10,7 +10,7 @@ $(document).ready(function() {
 	updatePage();
 
 	socket.emit('user', { 
-		name : $("#author").val() 
+		name : $("#authorEmail").val() 
 	});
 
 	var previousText = "";
@@ -42,6 +42,10 @@ socket.on('msg', function (msg) {
 	newMsg += "<span class='time'>just now</span></small><p>" + msg.text + "</p>";	
 	$('#allMsgs').append(newMsg);
 	adjustScroll();
+});
+
+socket.on("update", function (data) {
+	console.log("Update");
 });
 
 function updatePage() {

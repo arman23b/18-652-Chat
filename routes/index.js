@@ -4,6 +4,7 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 
 var Message = require('../models/message');
+var User = require('../models/user');
 
 var isAuthenticated = function (req, res, next) {
 	// if user is authenticated in the session, call the next() to call the next request handler 
@@ -20,7 +21,13 @@ var isAuthenticated = function (req, res, next) {
 router.get('/', isAuthenticated, function (req, res) {
 	Message.find(function (err, messages) {
 		if (err) return console.error(err);
-		res.render('test', { messages :  messages, user : req.user });	
+		User.find({"isOnline" : true}, function (err1, users) {
+			if (err1) return console.error(err1); 
+			res.render('test', { 
+				messages :  messages, 
+				user : req.user, 
+				onlineUsers : users});	
+		});
 	});
 });
 

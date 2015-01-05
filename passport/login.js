@@ -24,6 +24,15 @@ module.exports = function(passport){
                         console.log('Invalid Password');
                         return done(null, false, req.flash('message', 'Invalid Password')); // redirect back to login page
                     }
+                    user.isOnline = true;
+                    // save the user
+                    user.save(function(err) {
+                        if (err){
+                            console.log('Error in Saving user: '+err);  
+                            throw err;  
+                        }
+                        console.log(user.email + ' is online succesful');    
+                    });
                     // User and password both match, return user from done method
                     // which will be treated like success
                     console.log("Success");
